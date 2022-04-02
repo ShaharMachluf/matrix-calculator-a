@@ -11,6 +11,12 @@ namespace zich{
     Matrix& Matrix::operator=(const Matrix& mat){
         return *this;
     }
+    int Matrix::get_row_num(){
+        return this->rows;
+    }
+    int Matrix::get_col_num(){
+        return this->columns;
+    }
     Matrix Matrix::operator+(const Matrix &other) const{
         return other;
     }

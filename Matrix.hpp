@@ -6,9 +6,13 @@ using namespace std;
 namespace zich{
     class Matrix{
         vector<vector<double>> mat;
+        int rows;
+        int columns;
         public:
         Matrix(vector<double> vec, int n, int m);
         Matrix(const Matrix &other); 
+        int get_row_num();
+        int get_col_num();
         Matrix& operator=(const Matrix &mat);
         Matrix operator+(const Matrix &other) const;
         Matrix operator-(const Matrix &other) const;
