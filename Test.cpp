@@ -85,10 +85,46 @@ TEST_CASE("Comparing"){
     CHECK(e<=b);
     CHECK_FALSE(b==e);
     //bad input, not the same size
-    // CHECK_THROWS((a == d));
-    // CHECK_THROWS((a != d));
-    // CHECK_THROWS((a <= d));
-    // CHECK_THROWS((a >= d));
-    // CHECK_THROWS((a < d));
-    // CHECK_THROWS((a > d));
+    // CHECK_THROWS(a == d);
+    // CHECK_THROWS(a != d);
+    // CHECK_THROWS(a <= d);
+    // CHECK_THROWS(a >= d);
+    // CHECK_THROWS(a < d);
+    // CHECK_THROWS(a > d);
+}
+
+TEST_CASE("Increase/Decrease"){
+    std::vector<double> arr = {3, 0, 0, 0, 3, 0, 0, 0, 3};
+    Matrix a{arr, 3, 3};
+    Matrix b{arr, 3, 3};
+    Matrix c{{4, 1, 1, 1, 4, 1, 1, 1, 4}, 3, 3};
+    Matrix d{{2, -1, -1, -1, 2, -1, -1, -1, 2}, 3, 3};
+    CHECK(++a==c);
+    CHECK((--b)==d);
+    Matrix e{arr, 3, 3};
+    Matrix f{arr, 3, 3};
+    CHECK((e++)!=c);
+    CHECK(e==c);
+    CHECK((f--)!=d);
+    CHECK(f==d);
+}
+
+TEST_CASE("Multiply"){
+    std::vector<double> arr = {3, 0, 0, 0, 3, 0, 0, 0, 3};
+    Matrix a{arr, 3, 3};
+    Matrix b{{9, 0, 0, 0, 9, 0, 0, 0, 9}, 3, 3};
+    CHECK((a*3) == b);
+    CHECK((3*a) == b);
+    CHECK((b*(1/3)) == a);
+    CHECK(((1/3)*b) == a);
+    a*=3;
+    CHECK(a==b);
+    Matrix c{{1,2,3,4}, 2, 2};
+    Matrix d{{1,2,3,4}, 2, 2};
+    Matrix e{{7, 10, 15, 22}, 2, 2};
+    CHECK((c*d) == e);
+    CHECK_THROWS(a*c);
+    CHECK_THROWS(c*a);
+    c*=d;
+    CHECK(c==e);
 }
