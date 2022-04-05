@@ -23,11 +23,15 @@ string nospaces(string input) {
 	return input;
 }
 
-// TEST_CASE("Build Matrix"){
-//     std::vector<double> identity = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-//     CHECK_NOTHROW((Matrix a{identity, 3, 3}));
-
-// }
+TEST_CASE("Build Matrix"){
+    std::vector<double> identity = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+    CHECK_NOTHROW(Matrix(identity, 3, 3));
+    CHECK_NOTHROW(Matrix(identity, 1, 9));
+    CHECK_THROWS(Matrix(identity, 2, 3));
+    CHECK_THROWS(Matrix(identity, 3, 2));
+    CHECK_THROWS(Matrix(identity, 4, 3));
+    CHECK_THROWS(Matrix(identity, 3, 4));
+}
 
 TEST_CASE("Plus/Minus"){
     std::vector<double> identity = {1, 0, 0, 0, 1, 0, 0, 0, 1};
@@ -85,12 +89,12 @@ TEST_CASE("Comparing"){
     CHECK(e<=b);
     CHECK_FALSE(b==e);
     //bad input, not the same size
-    // CHECK_THROWS(a == d);
-    // CHECK_THROWS(a != d);
-    // CHECK_THROWS(a <= d);
-    // CHECK_THROWS(a >= d);
-    // CHECK_THROWS(a < d);
-    // CHECK_THROWS(a > d);
+    CHECK_THROWS(bool ans =(a == d));
+    CHECK_THROWS(bool ans = (a != d));
+    CHECK_THROWS(bool ans = (a <= d));
+    CHECK_THROWS(bool ans=(a >= d));
+    CHECK_THROWS(bool ans=(a < d));
+    CHECK_THROWS(bool ans=(a > d));
 }
 
 TEST_CASE("Increase/Decrease"){
